@@ -67,13 +67,17 @@ class CouponDispenser:
         if len(self.coupon_cards) == 0:
             return "The box is empty."
         
-        #If the name alread exists in customer_roster
+        #If the name already exists in customer_roster
         for i in range(len(self.customer_roster)):
             if self.customer_roster[i] == name:
                 existing_coupon_index = self.issued_indices[i]
                 return f"That name already has a coupon: {existing_coupon_index}"
-                
-            
+        
+        #if name is new
+        random_index = random.randrange(len(self.coupon_cards))
+        self.customer_roster.append(name)
+        self.issued_indices.append(random_index)
+        return self.coupon_cards[random_index]
         
         pass
 
